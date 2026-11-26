@@ -204,5 +204,5 @@ Now the agent calls `view_image` after generating the image and only then genera
 Note that we don't recreate `callback`: it only needs the name of the agent, and it's the same.
 
 <!-- nav:start -->
-[← Previous: 2.1 Environment preparation](01-environment-preparation.md) · [Next: 2.3 GPU Workloads as Agentic Tools →](03-gpu-tools.md)
+[← Previous: 2.1 Environment Preparation](01-environment-preparation.md) · [Next: 2.3 GPU Workloads as Agentic Tools →](03-gpu-tools.md)
 <!-- nav:end -->

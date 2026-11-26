@@ -69,5 +69,5 @@ This is a 5 second video with 16 frames per second. It takes a few minutes, and 
 Now we have two tools: one for images and one for videos. In the next lesson, we'll give them to an agent, so it can prompt them better.
 
 <!-- nav:start -->
-[← Previous: 05 - Measuring Startup, Load and Generation Costs](../01-consistent-media-generation-on-serverless-gpus/05-measuring-costs.md) · [Next: 2.2 The Agent Loop: Deep Dive →](02-agent.md)
+[← Previous: 05 - Measuring Startup, Load and Generation Costs](../01-consistent-media-generation-on-serverless-gpus/05-measuring-costs.md) · [Next: 2.2 Creating the Media Agent →](02-agent.md)
 <!-- nav:end -->
