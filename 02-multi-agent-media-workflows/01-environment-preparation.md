@@ -3,7 +3,7 @@ prev_url: ../01-consistent-media-generation-on-serverless-gpus/05-measuring-cost
 next_url: 02-agent.md
 ---
 
-# 2.1 Environment preparation
+# 2.1 Environment Preparation
 
 We want to create a video clip. In this clip, we'll have a desk lamp, a person working from home, dusk.
 
@@ -27,18 +27,6 @@ VIDEO_ENDPOINT=https://...
 VIDEO_TOKEN=...
 ```
 
-Now start Jupyter:
-
-```bash
-uv run jupyter notebook
-```
-
-First, I want the notebook to pick up changes in `gen.py` without restarting the kernel:
-
-```python
-%load_ext autoreload
-%autoreload 2
-```
 
 Load the `.env` file:
 
@@ -55,22 +43,14 @@ image_endpoint = os.getenv('IMAGE_ENDPOINT')
 image_model = 'Efficient-Large-Model/Sana_1600M_1024px_diffusers'
 
 from gen import ImageGenerator
-
 sana_generator = ImageGenerator(image_endpoint, image_model)
 
 seed_image = sana_generator.generate_image_tool('a desk lamp, a person working from home, dusk')
-seed_image
 ```
 
-It saves the image and returns the path:
+Next, we set up a video endpoint - I'll use the [Wan2.2-I2V-A14B template](https://github.com/nebius/serverless-ai-cookbook/blob/main/templates/endpoint-wan22-i2v-a14b/README.md).
 
-```
-'out\\quickstart\\qwen_20261126-181336_ftm.png'
-```
-
-If your Sana endpoint has authentication on, pass the token too: `ImageGenerator(image_endpoint, image_model, token=...)`.
-
-Next, we set up a video endpoint - I'll use the [Wan2.2-I2V-A14B template](https://github.com/nebius/serverless-ai-cookbook/blob/main/templates/endpoint-wan22-i2v-a14b/README.md). This model turns an image into a video: the image we just generated becomes the first frame.
+This model turns an image into a video: the image we just generated becomes the first frame.
 
 ```python
 video_endpoint = os.getenv('VIDEO_ENDPOINT')
@@ -78,22 +58,15 @@ video_token = os.getenv('VIDEO_TOKEN')
 video_model = 'Wan-AI/Wan2.2-I2V-A14B-Diffusers'
 
 from gen import VideoGenerator
-
 wan_generator = VideoGenerator(video_endpoint, video_model, token=video_token)
 
 video = wan_generator.generate_video_tool('advertisement', seed_image, 5.0, 16)
 video
 ```
 
-This is a 5 second video with 16 frames per second. It takes a few minutes, and we get the path back:
+This is a 5 second video with 16 frames per second. It takes a few minutes, and we get the path back.
 
-```
-'out\\quickstart\\wan_20261126-181422_4pu.mp4'
-```
-
-The video has the same aspect ratio as the image.
-
-Now we have two tools: one for images and one for videos. In the next lesson, we'll give them to an agent.
+Now we have two tools: one for images and one for videos. In the next lesson, we'll give them to an agent, so it can prompt them better.
 
 <!-- nav:start -->
 [← Previous: 05 - Measuring Startup, Load and Generation Costs](../01-consistent-media-generation-on-serverless-gpus/05-measuring-costs.md) · [Next: 2.2 The Agent Loop: Deep Dive →](02-agent.md)
